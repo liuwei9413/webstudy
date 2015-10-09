@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>试验</title>
+
+    <script type="text/javascript" src="jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="angular.min.js"></script>
+
+</head>
+<body>
+<div ng-controller="BoxCtrl">
+    <div class="box" style="width: 100px; height: 100px; background-color: red;"
+         ng-click="click()"></div>
+    <p>{{ w }} x {{ h }}</p>
+    <p>W: <input type="text" ng-model="w" /></p>
+    <p>H: <input type="text" ng-model="h" /></p>
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+
+
+    var BoxCtrl = function($scope, $element){
+    //var BoxCtrl = ['$scope', '$element', function(s, e) {}];      //AMD写法 依赖注入
+
+        //$element 就是一个 jQuery 对象
+        var e = $element.children().eq(0);
+        $scope.w = e.width();
+        $scope.h = e.height();
+
+        $scope.click = function(){
+            $scope.w = parseInt($scope.w) + 10;
+            $scope.h = parseInt($scope.h) + 10;
+        }
+
+        $scope.$watch('w',
+                function(to, from){ //to->newVal from->oldVal
+                    e.width(to);
+                }
+        );
+
+        $scope.$watch('h',
+                function(to, from){
+                    e.height(to);
+                }
+        );
+    }
+
+    angular.bootstrap(document.documentElement);    //启动/初始化angularjs
+</script>
+</body>
+</html>

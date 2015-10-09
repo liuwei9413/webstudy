@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>数据正向绑定</title>
+
+    <script type="text/javascript" src="jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="angular.min.js"></script>
+
+</head>
+<body>
+<div ng-controller="test">
+
+</div>
+
+
+<script type="text/javascript">
+    var test = function() {
+        console.log('haha');
+    };
+    var app = angular.module('myApp', [], function() {console.log('here')});
+
+    app.controller('test', function() {
+        console.log('hello');
+    });
+
+    angular.bootstrap(document, ['myApp']); //参数指明根节点和启动的模块(可以多个模块)
+
+</script>
+</body>
+</html>

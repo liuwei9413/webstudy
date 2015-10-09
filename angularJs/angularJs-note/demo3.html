@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8" />
+
+    <title>内容渲染控制</title>
+
+    <script type="text/javascript" src="jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="angular.min.js"></script>
+    <style>
+        .active { background: #ccc;}
+        .active2 { background: green;}
+    </style>
+
+</head>
+<body>
+<div ng-controller="testCtrl" ng-style="{width:500+'px', height:'auto', fontSize:20+'px'}">
+    <p ng-repeat="data in datas" class="{{$odd ? 'active' : 'active2'}}">{{data}}</p>
+    <ul ng-init="a=['a','b','c','d']">
+        <li ng-repeat="member in a">{{member}}</li>
+    </ul>
+</div>
+
+<div ng-controller="test2">
+    <p ng-repeat="data in list" class="{{$even ? 'active' : 'active2'}}">{{$index}},{{data.name}}</p>
+</div>
+
+
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('testCtrl', function($scope) {
+        $scope.datas = [1,2,3,4];
+    });
+
+    app.controller('test2', ['$scope', function($scope) {
+        $scope.list = [{name:'aa'}, {name:'bb'}, {name:'cc'}];
+    }]);
+
+</script>
+</body>
+</html>
